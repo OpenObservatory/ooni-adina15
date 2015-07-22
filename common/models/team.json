@@ -1,0 +1,39 @@
+{
+  "name": "Team",
+  "plural": "Teams",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "longDescription": {
+      "type": "string"
+    },
+    "shortDescription": {
+      "type": "string",
+      "required": true
+    },
+    "members": {
+      "type": [
+        "object"
+      ]
+    },
+    "created": {
+      "type": "date",
+      "required": true
+    },
+    "leader": {
+      "type": "object",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
