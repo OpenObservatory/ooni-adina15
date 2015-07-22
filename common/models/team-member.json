@@ -1,7 +1,6 @@
 {
-  "name": "Team",
-  "plural": "Teams",
-  "base": "PersistedModel",
+  "name": "TeamMember",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -11,23 +10,20 @@
       "type": "string",
       "required": true
     },
-    "longDescription": {
-      "type": "string"
-    },
-    "shortDescription": {
+    "surname": {
       "type": "string",
       "required": true
     },
-    "members": {
+    "skills": {
       "type": [
-        "object"
+        "string"
       ]
     },
-    "created": {
-      "type": "date"
+    "url": {
+      "type": "string"
     },
-    "leader": {
-      "type": "object"
+    "twitter": {
+      "type": "string"
     }
   },
   "validations": [],

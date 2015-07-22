@@ -32,11 +32,11 @@
     "dataSource": "db",
     "public": false
   },
-  "team": {
+  "Team": {
     "dataSource": "db",
     "public": true
   },
-  "user": {
+  "TeamMember": {
     "dataSource": "db",
     "public": true
   }
