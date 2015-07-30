@@ -1,11 +1,19 @@
 {
-  "name": "TeamMember",
+  "name": "oonitarian",
   "base": "User",
   "idInjection": true,
   "options": {
-    "validateUpsert": true
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "oonitarian"
+    }
   },
   "properties": {
+    "username": {
+      "type": "string",
+      "required": true
+    },
+
     "name": {
       "type": "string",
       "required": true
@@ -19,15 +27,26 @@
         "string"
       ]
     },
-    "url": {
+    "portfolio_url": {
       "type": "string"
     },
     "twitter": {
       "type": "string"
+    },
+
+    "teamId": {
+      "type": "number"
     }
+
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "team": {
+      "type": "hasOne",
+      "model": "team",
+      "foreignKey": "id"
+    }
+  },
   "acls": [],
   "methods": []
 }

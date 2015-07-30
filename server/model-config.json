@@ -32,12 +32,12 @@
     "dataSource": "db",
     "public": false
   },
-  "Team": {
-    "dataSource": "db",
+  "team": {
+    "dataSource": "postgres",
     "public": true
   },
-  "TeamMember": {
-    "dataSource": "db",
+  "oonitarian": {
+    "dataSource": "postgres",
     "public": true
   }
 }
