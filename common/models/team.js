@@ -11,7 +11,7 @@ module.exports = function(Team) {
       }
       currentUser.teamId = team.id;  
       currentUser.save();
-      cb(null, currentUser);
+      cb(null, team);
     });
   }
   Team.remoteMethod(
@@ -20,6 +20,39 @@ module.exports = function(Team) {
       http: {path: '/join', verb: 'post'},
       accepts: {arg: 'id', type: 'number', http: { source: 'query' } },
       returns: {arg: 'members', type: ['string']}
+    }
+  )
+
+  Team.createJoin = function(name, longDescription, shortDescription, cb) {
+    var ctx = loopback.getCurrentContext(),
+      currentUser = ctx.get('currentUser');
+    Team.create({
+      name: name,
+      longDescription: longDescription,
+      shortDescription: shortDescription,
+      teamLeaderId: currentUser.id
+    }, function(err, team){
+      if (err) {
+        console.log(err);
+        return cb(err);
+      }
+      currentUser.teamId = team.id;
+      currentUser.save();
+      cb(null, team);
+    })
+    
+  }
+
+  Team.remoteMethod(
+    'createJoin',
+    {
+      http: {path: '/createJoin', verb: 'post'},
+      accepts: [
+        {arg: 'name', type: 'string', http: { source: 'query' } },
+        {arg: 'shortDescription', type: 'string', http: { source: 'query' } },
+        {arg: 'longDescription', type: 'string', http: { source: 'query' } }
+      ],
+      returns: {arg: 'team', type: 'object'}
     }
   )
 
