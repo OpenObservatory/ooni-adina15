@@ -12,5 +12,12 @@ Instructions:
 npm install strongloop
 cd client
 mkdir js
-lb-ng ../server/server.js js/lb-services.js
+../node-modules/.bin/lb-ng ../server/server.js js/lb-services.js
+```
+
+3) To add dependencies
+
+```
+npm install bower
+../node-modules/.bin/bower install angular-route
 ```
