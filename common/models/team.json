@@ -40,19 +40,12 @@
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
-      "property": "listTeams"
-    },
-    {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "admin",
-      "permission": "ALLOW",
       "property": "find"
     },
     {
       "accessType": "READ",
       "principalType": "ROLE",
-      "principalId": "teamMember",
+      "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "findById"
     },
