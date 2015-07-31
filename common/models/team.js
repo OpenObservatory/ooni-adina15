@@ -9,6 +9,10 @@ module.exports = function(Team) {
         console.log(err);
         return cb(err);
       }
+      if (team.teamLeaderId == null) {
+        team.teamLeaderId = currentUser.id;
+        team.save();
+      }
       currentUser.teamId = team.id;  
       currentUser.save();
       cb(null, team);
