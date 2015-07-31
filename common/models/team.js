@@ -1,5 +1,4 @@
 var loopback = require('loopback');
-var Oonitarian = require('../models/oonitarian');
 
 module.exports = function(Team) {
   Team.join = function(team_id, cb) {
@@ -10,15 +9,9 @@ module.exports = function(Team) {
         console.log(err);
         return cb(err);
       }
-      Oonitarian.findById(currentUser.id, function(err, oonitarian){
-        if (err) {
-          console.log(err);
-          return cb(err);
-        }
-        oonitarian.teamId = team.id;  
-        oonitarian.save();
-        cb(null, oonitarian);
-      });
+      currentUser.teamId = team.id;  
+      currentUser.save();
+      cb(null, currentUser);
     });
   }
   Team.remoteMethod(
@@ -39,19 +32,13 @@ module.exports = function(Team) {
         console.log(err);
         return cb(err);
       }
-      Oonitarian.findById(currentUser.id, function(err, oonitarian){
-        if (err) {
-          console.log(err);
-          return cb(err);
-        }
-        if (oonitarian.teamId === team.id) {
-          oonitarian.teamId = null;
-          oonitarian.save();
-          cb(null, oonitarian);
-        } else {
-          cb(new Error("You are not part of that team"), null);
-        }
-      });
+      if (oonitarian.teamId === team.id) {
+        oonitarian.teamId = null;
+        oonitarian.save();
+        cb(null, oonitarian);
+      } else {
+        cb(new Error("You are not part of that team"), null);
+      }
     });
   }
   Team.remoteMethod(
