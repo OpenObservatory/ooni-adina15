@@ -18,10 +18,16 @@
       "type": "string",
       "required": true
     },
-    "surname": {
+
+    "real_name": {
       "type": "string",
       "required": true
     },
+    "real_surname": {
+      "type": "string",
+      "required": true
+    },
+
     "skills": {
       "type": [
         "string"
