@@ -8,6 +8,6 @@ angular
     LoopBackResourceProvider.setUrlBase("http://127.0.0.1:3000/api");
   }])
 
-  .controller('controller', ['$scope', function ($scope) {
+  .controller('adinaController', ['$scope', function ($scope) {
     $scope.value = 42;
   }]);
