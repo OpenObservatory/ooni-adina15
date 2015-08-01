@@ -19,5 +19,5 @@ mkdir js
 
 ```
 npm install bower
-../node-modules/.bin/bower install angular-route
+../node-modules/.bin/bower install angular angular-resource
 ```
