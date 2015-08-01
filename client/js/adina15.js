@@ -8,6 +8,24 @@ angular
     LoopBackResourceProvider.setUrlBase("http://127.0.0.1:3000/api");
   }])
 
-  .controller('adinaController', ['$scope', function ($scope) {
-    $scope.value = 42;
+  .controller("RegisterController", ["$scope", "Oonitarian", function (
+        $scope, Oonitarian) {
+    // TODO: add more fields here
+    $scope.oonitarian = {
+      username: "",
+      name: "",
+      real_name: "",
+      real_surname: "",
+      email: "",
+      password: ""
+    };
+    $scope.submit = function () {
+      Oonitarian
+        .create($scope.oonitarian)
+        .$promise
+        .then(function (response) {
+          // TODO: once one is registered, allow to edit
+          console.log(response);
+        })
+    };
   }]);
