@@ -18,6 +18,5 @@ mkdir js
 3) To add dependencies
 
 ```
-npm install bower
 ../node-modules/.bin/bower install angular angular-resource
 ```
