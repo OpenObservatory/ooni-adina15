@@ -1,6 +1,9 @@
 var loopback = require('loopback');
+var app = require('../../server/server');
 
 module.exports = function(Team) {
+  var Oonitarian = app.models.Oonitarian;
+
   Team.join = function(team_id, cb) {
     var ctx = loopback.getCurrentContext(),
       currentUser = ctx.get('currentUser');
@@ -44,7 +47,6 @@ module.exports = function(Team) {
       currentUser.save();
       cb(null, team);
     })
-    
   }
 
   Team.remoteMethod(
@@ -86,4 +88,59 @@ module.exports = function(Team) {
       returns: {arg: 'members', type: ['string']}
     }
   )
+
+  Team.listTeams = function(cb) {
+    Team.find({
+      fields: {
+        created: false
+      }
+    }, function(err, teams){
+      if (err) {
+        console.log(err);
+        return cb(err);
+      }
+      var team_count = teams.length,
+        team_list = [];
+      function addTeamToList(team, members) {
+        team.members = [];
+        members.forEach(function(member){
+          is_leader = false;
+          if (member.id == team.teamLeaderId) {
+            is_leader = true;
+          }
+          team.members.push({
+            name: member.name,
+            email: member.email,
+            skills: member.skills,
+            portfolio_url: member.portfolio_url,
+            twitter: member.twitter,
+            leader: is_leader
+          })
+        });
+        team_list.push(team);
+        if (team_list.length == team_count) {
+          cb(null, team_list);
+        }
+      }
+      teams.forEach(function(team) {
+        app.models.Oonitarian.find({
+          where: {
+            "teamId": team.id
+          }
+        }, function(err, members) {
+          addTeamToList(team, members);
+        });
+      });
+    });
+  }
+  Team.remoteMethod(
+    'listTeams',
+    {
+      http: {path: '/list-teams', verb: 'get'},
+      returns: {arg: 'teams', type: 'array'}
+    }
+  )
+
+
+
 };

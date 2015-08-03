@@ -26,6 +26,9 @@
     },
     "teamLeaderId": {
       "type": "number"
+    },
+    "membersMaximum": {
+      "type": "number"
     }
   },
   "validations": [],
@@ -43,7 +46,7 @@
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
-      "property": "find"
+      "property": "listTeams"
     },
     {
       "accessType": "READ",
