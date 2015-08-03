@@ -11,9 +11,8 @@ dependencies and to prepare for development:
 
 ```
 npm install
-cd client
-../node-modules/.bin/lb-ng ../server/server.js js/lb-services.js
-../node-modules/.bin/bower install
+node_modules/.bin/lb-ng server/server.js client/js/lb-services.js
+node_modules/.bin/bower install
 ```
 
 Invoking ``lb-ng`` allows to regenerate the file containing Angular.js
