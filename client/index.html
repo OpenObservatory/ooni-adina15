@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="adina15" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="adina15" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="adina15" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="adina15" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<!-- Register form -->
+<section>
+  <form ng-submit="submit()" ng-controller="RegisterController">
+    <fieldset>
+      <legend>Register form</legend>
+
+      <div>
+        <label>Username</label>
+        <input type="text" ng-model="oonitarian.username">
+      </div>
+
+      <div>
+        <label>Name</label>
+        <input type="text" ng-model="oonitarian.name">
+      </div>
+
+      <div>
+        <label>Real name</label>
+        <input type="text" ng-model="oonitarian.real_name">
+      </div>
+
+      <div>
+        <label>Real surname</label>
+        <input type="text" ng-model="oonitarian.real_surname">
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input type="text" ng-model="oonitarian.email">
+      </div>
+
+      <div>
+        <label>Password</label>
+        <input type="password" ng-model="oonitarian.password">
+      </div>
+
+      <div>
+        <button>Register</button>
+      </div>
+
+    </fieldset>
+  </form>
+<section>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="js/lb-services.js"></script>
+  <script src="js/adina15.js"></script>
+</body>
+</html>

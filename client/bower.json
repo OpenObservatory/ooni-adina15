@@ -1,0 +1,19 @@
+{
+  "name": "adina15_client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/TheTorProject/ooni-adina15",
+  "description": "Client for ADINA15",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-resource": "~1.4.3"
+  }
+}
