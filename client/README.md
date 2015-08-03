@@ -9,7 +9,7 @@ Instructions:
 2) Type the following from toplevel dir
 
 ```
-npm install strongloop
+npm install
 cd client
 mkdir js
 ../node-modules/.bin/lb-ng ../server/server.js js/lb-services.js
