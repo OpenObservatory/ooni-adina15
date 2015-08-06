@@ -54,9 +54,9 @@ module.exports = function(Team) {
     {
       http: {path: '/createJoin', verb: 'post'},
       accepts: [
-        {arg: 'name', type: 'string', http: { source: 'query' } },
-        {arg: 'shortDescription', type: 'string', http: { source: 'query' } },
-        {arg: 'longDescription', type: 'string', http: { source: 'query' } }
+        {arg: 'name', type: 'string' },
+        {arg: 'shortDescription', type: 'string' },
+        {arg: 'longDescription', type: 'string' }
       ],
       returns: {arg: 'team', type: 'object'}
     }
@@ -140,7 +140,4 @@ module.exports = function(Team) {
       returns: {arg: 'teams', type: 'array'}
     }
   )
-
-
-
 };
