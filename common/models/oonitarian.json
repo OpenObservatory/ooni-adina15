@@ -9,21 +9,13 @@
     }
   },
   "properties": {
+
     "username": {
       "type": "string",
       "required": true
     },
 
-    "name": {
-      "type": "string",
-      "required": true
-    },
-
-    "real_name": {
-      "type": "string",
-      "required": true
-    },
-    "real_surname": {
+    "legal_name": {
       "type": "string",
       "required": true
     },
@@ -33,9 +25,11 @@
         "string"
       ]
     },
+
     "portfolio_url": {
       "type": "string"
     },
+
     "twitter": {
       "type": "string"
     },
@@ -45,6 +39,7 @@
     }
 
   },
+  "hidden": ["password", "legal_name"],
   "validations": [],
   "relations": {
     "team": {
