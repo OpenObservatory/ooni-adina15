@@ -30,13 +30,15 @@ module.exports = function(Team) {
     }
   )
 
-  Team.createJoin = function(name, longDescription, shortDescription, cb) {
+  Team.createJoin = function(name, longDescription, shortDescription,
+                             membersMaximum, cb) {
     var ctx = loopback.getCurrentContext(),
       currentUser = ctx.get('currentUser');
     Team.create({
       name: name,
       longDescription: longDescription,
       shortDescription: shortDescription,
+      membersMaximum: membersMaximum,
       teamLeaderId: currentUser.id
     }, function(err, team){
       if (err) {
@@ -56,7 +58,8 @@ module.exports = function(Team) {
       accepts: [
         {arg: 'name', type: 'string' },
         {arg: 'shortDescription', type: 'string' },
-        {arg: 'longDescription', type: 'string' }
+        {arg: 'longDescription', type: 'string' },
+        {arg: 'membersMaximum', type: 'number' }
       ],
       returns: {arg: 'team', type: 'object'}
     }
