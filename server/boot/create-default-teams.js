@@ -9,8 +9,8 @@ module.exports = function(app) {
   ds.createModel(Team.name, Team.properties, Team.options);
   ds.createModel(Oonitarian.name, Oonitarian.properties, Oonitarian.options);
 
-  //ds.autoupdate(Team.name, function (err, result) {
-  ds.automigrate(function (err, result) {
+  ds.autoupdate(Team.name, function (err, result) {
+  //ds.automigrate(function (err, result) {  // Use this for testing
     if (err) {
       console.log(err);
     }
@@ -19,8 +19,8 @@ module.exports = function(app) {
     });
   });
 
-  //ds.autoupdate(Oonitarian.name, function (err, result) {
-  ds.automigrate(function (err, result) {
+  ds.autoupdate(Oonitarian.name, function (err, result) {
+  //ds.automigrate(function (err, result) {  // Use this for testing
     if (err) {
       console.log(err);
     }
