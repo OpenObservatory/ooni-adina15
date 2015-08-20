@@ -9,8 +9,9 @@ module.exports = function(app) {
   ds.createModel(Team.name, Team.properties, Team.options);
   ds.createModel(Oonitarian.name, Oonitarian.properties, Oonitarian.options);
 
-  //ds.autoupdate(Team.name, function (err, result) {
-  ds.automigrate(function (err, result) {
+  ds.autoupdate(Team.name, function (err, result) {
+  // Enable first run only, otherwise DB is trashed
+  //ds.automigrate(function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -19,8 +20,9 @@ module.exports = function(app) {
     });
   });
 
-  //ds.autoupdate(Oonitarian.name, function (err, result) {
-  ds.automigrate(function (err, result) {
+  ds.autoupdate(Oonitarian.name, function (err, result) {
+  // Enable first run only, otherwise DB is trashed
+  //ds.automigrate(function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -62,11 +64,13 @@ module.exports = function(app) {
         membersMaximum: 10        
       };
 
-      Team.create(project1);
-      Team.create(project2);
-      Team.create(project3);
-      Team.create(project4);
-      Team.create(project5);
+      // Enable on first run only, otherwise there will be duplicate teams
+      // Team.create(project1);
+      // Team.create(project2);
+      // Team.create(project3);
+      // Team.create(project4);
+      // Team.create(project5);
+
     });
 
   });

@@ -19,7 +19,7 @@
       "limit": "100kb"
     },
     "cors": {
-      "origin": true,
+      "origin": false,
       "credentials": true
     },
     "errorHandler": {
