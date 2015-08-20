@@ -6,7 +6,7 @@
     "compression": {},
     "cors": {
       "params": {
-        "origin": "https://ooni.torproject.org/",
+        "origin": "https://ooni.torproject.org",
         "credentials": true,
         "maxAge": 86400
       }
