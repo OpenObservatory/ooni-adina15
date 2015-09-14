@@ -7,7 +7,7 @@ module.exports = function(Team) {
   Team.join = function(team_id, cb) {
     var ctx = loopback.getCurrentContext(),
       currentUser = ctx.get('currentUser');
-    Team.findById(team_id, function(err, team){
+    Team.findById(team_id, function (err, team) {
       if (err) {
         console.log(err);
         return cb(err);
@@ -50,7 +50,6 @@ module.exports = function(Team) {
       cb(null, team);
     })
   }
-
   Team.remoteMethod(
     'createJoin',
     {
@@ -68,16 +67,41 @@ module.exports = function(Team) {
   Team.leave = function(team_id, cb) {
     var ctx = loopback.getCurrentContext(),
       currentUser = ctx.get('currentUser');
-    // XXX we can probably remove this extra lookup
-    Team.findById(team_id, function(err, team){
+    Team.findById(team_id, function (err, team) {
       if (err) {
         console.log(err);
         return cb(err);
       }
-      if (oonitarian.teamId === team.id) {
-        oonitarian.teamId = null;
-        oonitarian.save();
-        cb(null, oonitarian);
+      if (currentUser.teamId === team.id) {
+        currentUser.teamId = null;
+        currentUser.save();
+        app.models.Oonitarian.find({
+          where: {
+            "teamId": team.id
+          }
+        }, function(err, members) {
+          if (err) {
+            console.log(err);
+            return cb(err);
+          }
+          var newMembers = [];
+          // XXX The current user is still listed as a member
+          // and so we need to filter he/she out
+          for (var i = 0; i < members.length; ++i) {
+            if (members[i].id != currentUser.id) {
+              newMembers.push(members[i]);
+            }
+          }
+          if (team.teamLeaderId == currentUser.id) {
+            if (newMembers.length > 0) {
+              team.teamLeaderId = newMembers[0].id;
+            } else {
+              team.teamLeaderId = null;
+            }
+          }
+          team.save();
+          cb(null, newMembers);
+        });
       } else {
         cb(new Error("You are not part of that team"), null);
       }
