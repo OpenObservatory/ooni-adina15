@@ -116,6 +116,45 @@ module.exports = function(Team) {
     }
   )
 
+  Team.changeLeader = function (newLeaderId, cb) {
+    var ctx = loopback.getCurrentContext(),
+      currentUser = ctx.get('currentUser');
+    Team.findById(currentUser.teamId, function (err, team) {
+      if (err) {
+        console.log(err);
+        return cb(err);
+      }
+      if (team.teamLeaderId != currentUser.id) {
+        return cb(new Error("You are not leader of that team"));
+      }
+      app.models.Oonitarian.find({
+        where: {
+          "teamId": team.id
+        }
+      }, function(err, members) {
+        if (err) {
+          console.log(err);
+          return cb(err);
+        }
+        for (var i = 0; i < members.length; ++i) {
+          if (members[i].id == newLeaderId) {
+            team.teamLeaderId = newLeaderId;
+            team.save();
+            return cb(null);
+          }
+        }
+        cb(new Error("user not member of your team"));
+      });
+    });
+  }
+  Team.remoteMethod(
+    'changeLeader',
+    {
+      http: {path: '/change-leader', verb: 'post'},
+      accepts: {arg: 'id', type: 'number', http: { source: 'query' }}
+    }
+  )
+
   Team.listTeams = function(cb) {
     Team.find({
       fields: {
@@ -136,6 +175,7 @@ module.exports = function(Team) {
             is_leader = true;
           }
           team.members.push({
+            id: member.id,
             name: member.name,
             email: member.email,
             skills: member.skills,
