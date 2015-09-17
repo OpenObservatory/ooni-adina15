@@ -39,7 +39,7 @@
     }
 
   },
-  "hidden": ["password", "legal_name"],
+  "hidden": ["password"],
   "validations": [],
   "relations": {
     "team": {

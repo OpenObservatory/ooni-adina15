@@ -75,6 +75,13 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "leave"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "changeLeader"
     }
   ],
   "methods": []
