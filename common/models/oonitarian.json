@@ -36,6 +36,18 @@
 
     "teamId": {
       "type": "number"
+    },
+
+    "birthCity": {
+      "type": "string"
+    },
+
+    "phoneNumber": {
+      "type": "string"
+    },
+
+    "birthDate": {
+      "type": "string"
     }
 
   },
